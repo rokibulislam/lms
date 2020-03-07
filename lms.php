@@ -102,6 +102,7 @@ final class Lms {
 		require_once LMS_ROOT . '/classes/Lesson.php';
 		require_once LMS_ROOT . '/classes/Quiz.php';
 		require_once LMS_ROOT . '/classes/RestAPI.php';
+		require_once LMS_ROOT . '/classes/Rewrite.php';
 		require_once LMS_ROOT . '/classes/Shortcode.php';
 		require_once LMS_ROOT . '/classes/Student.php';
 		require_once LMS_ROOT . '/classes/Tools.php';
@@ -124,7 +125,13 @@ final class Lms {
 	}
 
 	public function init_classes() {
-
+		$this->container['admin']   = new lms\classes\Admin();
+		$this->container['course']  = new lms\classes\Course();
+		$this->container['assets']  = new lms\classes\Assets();
+		$this->container['ajax']    = new lms\classes\Ajax();
+		$this->container['lesson']  = new lms\classes\Lesson();
+		$this->container['rewrite'] = new lms\classes\Rewrite();
+		$this->container['user']    = new lms\classes\User();
 	}
 
 	public function plugin_action_links( $links ) {
