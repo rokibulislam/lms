@@ -45,7 +45,7 @@ class Admin {
 		return $footer_text;
 	}
 
-	public function tutor_students() {
+	public function lms_students() {
 
 	}
 
