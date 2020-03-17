@@ -42,6 +42,9 @@ final class Lms {
 		register_activation_hook( __FILE__, [ $this, 'activate' ] );
         register_deactivation_hook( __FILE__, [ $this, 'deactivate' ] );
 
+		$this->includes();
+		$this->init_classes();
+
         add_action( 'plugins_loaded', [ $this, 'init_plugin' ] );
 	}
 
@@ -77,7 +80,6 @@ final class Lms {
 	}
 
 	public function init_plugin() {
-		$this->includes();
         $this->init_hooks();
 	}
 
@@ -115,7 +117,6 @@ final class Lms {
 
 	public function init_hooks() {
 		add_action( 'init', [ $this, 'localization_setup' ] );
-		add_action( 'init', [ $this, 'init_classes' ] );
 
 		add_filter( 'plugin_action_links_' . plugin_basename( __FILE__ ), [ $this, 'plugin_action_links' ] );
 	}
@@ -130,6 +131,7 @@ final class Lms {
 		$this->container['assets']  = new lms\classes\Assets();
 		$this->container['ajax']    = new lms\classes\Ajax();
 		$this->container['lesson']  = new lms\classes\Lesson();
+		$this->container['quiz']    = new lms\classes\Quiz();
 		$this->container['rewrite'] = new lms\classes\Rewrite();
 		$this->container['user']    = new lms\classes\User();
 	}

@@ -20,7 +20,7 @@ class User {
 
 	}
 
-	public function profile_update( ($user_id ) {
+	public function profile_update( $user_id ) {
 
 	}
 }

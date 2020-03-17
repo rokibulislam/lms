@@ -15,8 +15,11 @@ class Lesson {
 
 	public function register_lesson_post_types() {
 		$args = array(
-			'labels' => __('Lesson',''),
-			'public' => true,
+			'label'        => __( 'Lessons', '' ),
+			'labels'       => __('Lesson',''),
+			'public'       => true,
+			'show_ui'      => true,
+			'show_in_menu' => 'lms',
 		);
 
 		register_post_type( 'lesson', $args );
