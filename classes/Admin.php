@@ -49,9 +49,11 @@ class Admin {
 
 	}
 
-	public function lms_instructors() {
-
-	}
+	public function lms_instructors() { ?>
+		<div>
+			Hello
+		</div>
+	<?php }
 
 	public function withdraw_requests() {
 
