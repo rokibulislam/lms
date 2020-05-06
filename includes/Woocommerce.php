@@ -1,11 +1,11 @@
 <?php
 
-namespace lms\classes;
+namespace LMS;
 
 if ( ! defined( 'ABSPATH' ) )
 	exit;
 
-class RestAPI {
+class WooCommerce {
 	public function __construct() {
 
 	}

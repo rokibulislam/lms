@@ -1,11 +1,11 @@
 <?php
 
-namespace lms\classes;
+namespace LMS;
 
 if ( ! defined( 'ABSPATH' ) )
 	exit;
 
-class Dashboard {
+class Shortcode {
 	public function __construct() {
 
 	}

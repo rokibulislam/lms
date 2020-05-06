@@ -92,27 +92,27 @@ final class Lms {
 	}
 
 	public function includes() {
-		require_once LMS_ROOT . '/classes/Admin.php';
-		require_once LMS_ROOT . '/classes/Ajax.php';
-		require_once LMS_ROOT . '/classes/Assets.php';
-		require_once LMS_ROOT . '/classes/Course.php';
-		require_once LMS_ROOT . '/classes/Dashboard.php';
-		require_once LMS_ROOT . '/classes/Email.php';
-		require_once LMS_ROOT . '/classes/Frontend.php';
-		require_once LMS_ROOT . '/classes/Gutenberg.php';
-		require_once LMS_ROOT . '/classes/Instructor.php';
-		require_once LMS_ROOT . '/classes/Lesson.php';
-		require_once LMS_ROOT . '/classes/Quiz.php';
-		require_once LMS_ROOT . '/classes/RestAPI.php';
-		require_once LMS_ROOT . '/classes/Rewrite.php';
-		require_once LMS_ROOT . '/classes/Shortcode.php';
-		require_once LMS_ROOT . '/classes/Student.php';
-		require_once LMS_ROOT . '/classes/Tools.php';
-		require_once LMS_ROOT . '/classes/User.php';
-		require_once LMS_ROOT . '/classes/WithDraw.php';
-		require_once LMS_ROOT . '/classes/Woocommerce.php';
-		require_once LMS_ROOT . '/classes/widget/Course.php';
-		require_once LMS_ROOT . '/classes/settings/Course.php';
+		require_once LMS_INCLUDES . '/Admin.php';
+		require_once LMS_INCLUDES . '/Ajax.php';
+		require_once LMS_INCLUDES . '/Assets.php';
+		require_once LMS_INCLUDES . '/Course.php';
+		require_once LMS_INCLUDES . '/Dashboard.php';
+		require_once LMS_INCLUDES . '/Email.php';
+		require_once LMS_INCLUDES . '/Frontend.php';
+		require_once LMS_INCLUDES . '/Gutenberg.php';
+		require_once LMS_INCLUDES . '/Instructor.php';
+		require_once LMS_INCLUDES . '/Lesson.php';
+		require_once LMS_INCLUDES . '/Quiz.php';
+		require_once LMS_INCLUDES . '/RestAPI.php';
+		require_once LMS_INCLUDES . '/Rewrite.php';
+		require_once LMS_INCLUDES . '/Shortcode.php';
+		require_once LMS_INCLUDES . '/Student.php';
+		require_once LMS_INCLUDES . '/Tools.php';
+		require_once LMS_INCLUDES . '/User.php';
+		require_once LMS_INCLUDES . '/WithDraw.php';
+		require_once LMS_INCLUDES . '/Woocommerce.php';
+		require_once LMS_INCLUDES . '/widget/Course.php';
+		require_once LMS_INCLUDES . '/settings/Course.php';
 	}
 
 	public function init_hooks() {
@@ -126,14 +126,14 @@ final class Lms {
 	}
 
 	public function init_classes() {
-		$this->container['admin']   = new lms\classes\Admin();
-		$this->container['course']  = new lms\classes\Course();
-		$this->container['assets']  = new lms\classes\Assets();
-		$this->container['ajax']    = new lms\classes\Ajax();
-		$this->container['lesson']  = new lms\classes\Lesson();
-		$this->container['quiz']    = new lms\classes\Quiz();
-		$this->container['rewrite'] = new lms\classes\Rewrite();
-		$this->container['user']    = new lms\classes\User();
+		$this->container['admin']   = new LMS\Admin();
+		$this->container['course']  = new LMS\Course();
+		$this->container['assets']  = new LMS\Assets();
+		$this->container['ajax']    = new LMS\Ajax();
+		$this->container['lesson']  = new LMS\Lesson();
+		$this->container['quiz']    = new LMS\Quiz();
+		$this->container['rewrite'] = new LMS\Rewrite();
+		$this->container['user']    = new LMS\User();
 	}
 
 	public function plugin_action_links( $links ) {
