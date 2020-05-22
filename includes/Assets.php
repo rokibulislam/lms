@@ -2,8 +2,7 @@
 
 namespace LMS;
 
-if ( ! defined( 'ABSPATH' ) )
-	exit;
+if ( ! defined( 'ABSPATH' ) ) exit;
 
 class Assets {
 
