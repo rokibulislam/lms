@@ -1,42 +1,44 @@
 <?php
 
+namespace LMS;
+
 class post_type {
 
-	public function __construct( $name, $singluar_name, $args ){
-		$this -> register_post_type($name, $singluar_name, $args);
+	public function __construct( $name, $singluar_name, $type, $args ){
+		$this ->register_post_type($name, $singluar_name, $type, $args);
 	}
 
 	//Registering Post Types
-	public function register_post_type( $name, $singluar_name, $args ) {
+	public function register_post_type( $name, $singluar_name, $type, $args ) {
 
 	    $args = array_merge(
 			array(
 				'labels' => array(
-					'name'               => _x( $name, '' ),
-					'singular_name'      => _x( $singluar_name, ''),
-					'add_new'            => _x( "Add New $singluar_name", ''),
-					'add_new_item'       => _x( "Add New $singluar_name", ''),
-					'edit_item'          => __( "Edit $singluar_name", '' ),
-					'new_item'           => __( "New $singluar_name", '' ),
-					'view_item'          => __( "View $singluar_name", '' ),
-					'search_items'       => __( "Search $name", ''),
-					'not_found'          => __( "No $name found", ''),
-					'all_items'          => __( "All $name", '' ),
-					'not_found_in_trash' => __("No $name found in Trash", '' ),
-					'parent_item_colon'  => __( '', ''),
-					'menu_name'          =>  _x( $name, '' )
-				  ),
+					'name' 			=> _x( $name, 'directoryx' ),
+					'singular_name' => _x( $singluar_name, 'directoryx' ),
+					'add_new'		=> _x( "Add New $singluar_name", 'directoryx'),
+					'add_new_item' 	=> _x( "Add New $singluar_name", 'directoryx'),
+					'edit_item' 	=> __( "Edit $singluar_name", 'directoryx' ),
+					'new_item' 		=> __( "New $singluar_name", 'directoryx' ),
+					'view_item' 	=> __( "View $singluar_name", 'directoryx' ),
+					'search_items' 	=> __( "Search $name", 'directoryx'),
+					'not_found' 	=> __( "No $name found", 'directoryx'),
+					'all_items' => __( "All $name", 'directoryx' ),
+					'not_found_in_trash' 	=> __("No $name found in Trash", 'directoryx' ),
+					'parent_item_colon' 	=> __( '', 'directoryx'),
+					'menu_name' 	=>  _x( $type, 'directoryx' )
+				),
 				'public' 	=> true,
 				'show_in_rest' => true,
-				'query_var' => strtolower($singluar_name),
+				'query_var' => strtolower( $type ),
 				'hierarchical' => true,
-				'rewrite' 	=> array('slug' => $name),
+				'rewrite' 	=> array('slug' => $type),
 				'supports' 	=> array(''),
 			),
 			$args
 	    );
 
-		register_post_type(strtolower($name),$args);
+		register_post_type(strtolower($type),$args);
 	}
 
 	//Taxonomies
@@ -49,19 +51,19 @@ class post_type {
 			$singular_name = $arr['singular_name'];
 
 			$labels = array(
-					'name' => _x( $name, '' ),
-					'singular_name' => _x( $singular_name, '' ),
-					'add_new' => _x( "Add New $singular_name", '' ),
-					'add_new_item' => _x( "Add New $singular_name", '' ),
-					'edit_item' => __( "Edit $singular_name", '' ),
-					'new_item' => __( "New $singular_name", '' ),
-					'view_item' => __( "View $singular_name", '' ),
-					'update_item' => __( "Update $singular_name", ''),
-					'search_items' => __( "Search $name", '' ),
-					'not_found' => __ ( "$name Not Found", '' ),
-					'not_found_trash' => __ ( "$name Not Found in Trash", '' ),
-					'all_items' => __( "All $name", '' ),
-					'separate_items_with_comments' => __( "Separate tags with commas", '' )
+				'name' => _x( $singular_name, 'directoryx' ),
+				'singular_name' => _x( $singular_name, 'directoryx' ),
+				'add_new' => _x( "Add New $singular_name", 'directoryx' ),
+				'add_new_item' => _x( "Add New $singular_name", 'directoryx'),
+				'edit_item' => __( "Edit $singular_name", 'directoryx' ),
+				'new_item' => __( "New $singular_name", 'directoryx' ),
+				'view_item' => __( "View $singular_name", 'directoryx' ),
+				'update_item' => __( "Update $singular_name", 'directoryx'),
+				'search_items' => __( "Search $singular_name", 'directoryx' ),
+				'not_found' => __ ( "$singular_name Not Found", 'directoryx' ),
+				'not_found_trash' => __ ( "$singular_name Not Found in Trash", 'directoryx' ),
+				'all_items' => __( "All $singular_name", '' ),
+				'separate_items_with_comments' => __( "Separate tags with commas", 'directoryx' )
 			);
 
 			$defaultArr = array(

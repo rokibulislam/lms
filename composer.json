@@ -1,0 +1,20 @@
+{
+    "name": "rajib00002/contactum",
+    "authors": [
+        {
+            "name": "Md Kamrul islam",
+            "email": "Kamrul.rajiv300@gmail.com"
+        }
+    ],
+    "require": {},
+    "require-dev": {},
+    "autoload": {
+        "psr-4": {
+            "LMS\\": "includes/"
+        },
+        "files": [
+            "includes/functions.php"
+        ]
+    },
+    "scripts": {}
+}

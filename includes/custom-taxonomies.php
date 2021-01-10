@@ -5,7 +5,7 @@ namespace LMS;
 if ( ! defined( 'ABSPATH' ) )
 	exit;
 
-class Taxonomies{
+class CustomTaxonomies {
 
 	public function __construct() {
 		add_action( 'course-category_add_form_fields', [ $this, 'add_category_fields' ] );

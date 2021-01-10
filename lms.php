@@ -29,6 +29,9 @@
     Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
+if ( !defined( 'ABSPATH' ) ) exit;
+
+require_once __DIR__ . '/vendor/autoload.php';
 
 final class Lms {
 
@@ -42,7 +45,6 @@ final class Lms {
 		register_activation_hook( __FILE__, [ $this, 'activate' ] );
         register_deactivation_hook( __FILE__, [ $this, 'deactivate' ] );
 
-		$this->includes();
 		$this->init_classes();
 
         add_action( 'plugins_loaded', [ $this, 'init_plugin' ] );
@@ -91,54 +93,26 @@ final class Lms {
 
 	}
 
-	public function includes() {
-		require_once LMS_INCLUDES . '/Admin.php';
-		require_once LMS_INCLUDES . '/Ajax.php';
-		require_once LMS_INCLUDES . '/Assets.php';
-		require_once LMS_INCLUDES . '/Course.php';
-		require_once LMS_INCLUDES . '/Dashboard.php';
-		require_once LMS_INCLUDES . '/Email.php';
-		require_once LMS_INCLUDES . '/Frontend.php';
-		require_once LMS_INCLUDES . '/Gutenberg.php';
-		require_once LMS_INCLUDES . '/Instructor.php';
-		require_once LMS_INCLUDES . '/Lesson.php';
-		require_once LMS_INCLUDES . '/Quiz.php';
-		require_once LMS_INCLUDES . '/RestAPI.php';
-		require_once LMS_INCLUDES . '/Rewrite.php';
-		require_once LMS_INCLUDES . '/Shortcode.php';
-		require_once LMS_INCLUDES . '/Student.php';
-		require_once LMS_INCLUDES . '/Tools.php';
-		require_once LMS_INCLUDES . '/User.php';
-		require_once LMS_INCLUDES . '/WithDraw.php';
-		require_once LMS_INCLUDES . '/Woocommerce.php';
-		require_once LMS_INCLUDES . '/widget/Course.php';
-		require_once LMS_INCLUDES . '/settings/Course.php';
-	}
-
 	public function init_hooks() {
 		add_action( 'init', [ $this, 'localization_setup' ] );
-
-		add_filter( 'plugin_action_links_' . plugin_basename( __FILE__ ), [ $this, 'plugin_action_links' ] );
 	}
 
 	public function localization_setup() {
-
+        load_plugin_textdomain( 'lms', false, dirname( plugin_basename( __FILE__ ) ) . '/languages/' );
 	}
 
 	public function init_classes() {
-		$this->container['admin']   = new LMS\Admin();
-		$this->container['course']  = new LMS\Course();
-		$this->container['assets']  = new LMS\Assets();
-		$this->container['ajax']    = new LMS\Ajax();
-		$this->container['lesson']  = new LMS\Lesson();
-		$this->container['quiz']    = new LMS\Quiz();
-		$this->container['rewrite'] = new LMS\Rewrite();
-		$this->container['user']    = new LMS\User();
-	}
-
-	public function plugin_action_links( $links ) {
-
-		return $links;
+		$this->container['admin']         = new LMS\Admin();
+		$this->container['course']        = new LMS\Course();
+		$this->container['assets']        = new LMS\Assets();
+		$this->container['ajax']          = new LMS\Ajax();
+		$this->container['rewrite']       = new LMS\Rewrite();
+        $this->container['user']          = new LMS\User();
+        $this->container['email']         = new LMS\Email();
+        $this->container['frontend']      = new LMS\Frotnend();
+        $this->container['shortcode']     = new LMS\Shortcode();
+        $this->container['user']          = new LMS\User();
+		$this->container['custom_taxonomies'] = new LMS\CustomTaxonomies();
 	}
 }
 

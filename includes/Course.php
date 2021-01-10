@@ -1,6 +1,7 @@
 <?php
 
 namespace LMS;
+use LMS\post_type;
 
 if ( ! defined( 'ABSPATH' ) )
 	exit;
@@ -9,12 +10,6 @@ class Course {
 
 	public function __construct() {
 		add_action( 'init', [ $this, 'register_course_post_types' ] );
-		add_action( 'init', [ $this, 'register_topic_post_types' ] );
-		add_action( 'init', [ $this, 'register_assignments_post_types' ] );
-		add_action( 'init', [ $this, 'register_enrolled_post_types' ] );
-
-		add_action( 'add_meta_boxes', [ $this, 'register_course_box' ] );
-		add_action( 'save_post', [ $this, 'save_course_meta' ],10,2 );
 	}
 
 	public function register_course_post_types() {
@@ -30,77 +25,26 @@ class Course {
 
 		register_post_type( 'course', $args );
 
-		$course_cat_args = array(
-        	'label'        => __( 'Category', '' ),
-        	'public'       => true,
-        	'rewrite'      => false,
-        	'hierarchical' => true,
-        	'show_ui'	   => true,
-        	'show_in_menu' => 'lms',
-        	'show_in_rest' => true
-    	);
+		$course_args          = array( 'show_in_menu' => 'lms', 'supports' => array( 'title', 'editor', 'thumbnail', 'author' ), 'has_archive' => true );
+		$course               = new post_type( 'Course', 'course', 'course', $course_args );
+		$course_cat_args = array( 'course-category' => array( 'singular_name' => 'Category', 'query_var'=> true, 'show_in_menu' => 'lms' ) );
+		$course->taxonomies('course', $course_cat_args );
+		$course_tag_args = array( 'course-tag' => array( 'singular_name' => 'Tag', 'query_var'=> true, 'show_in_menu' => 'lms' ) );
+		$course->taxonomies('course', $course_tag_args );
 
-    	register_taxonomy( 'course-category', 'course', $course_cat_args );
+		$topics_args          = array( 'show_in_menu' => 'lms', 'supports' => array( 'title', 'editor', 'thumbnail', 'author' ), 'has_archive' => true );
+		$topics               = new post_type( 'Topics', 'Topic', 'topics', $topics_args );
 
-    	$course_tag_args = array(
-        	'label'        => __( 'Tag', '' ),
-        	'public'       => true,
-        	'rewrite'      => false,
-        	'hierarchical' => true,
-        	'show_ui'	   => true,
-        	'show_in_menu' => 'lms',
-        	'show_in_rest' => true
-    	);
+		$assignments_args  = array( 'show_in_menu' => 'lms', 'supports' => array( 'title', 'editor', 'thumbnail', 'author' ), 'has_archive' => true );
+		$assignments       = new post_type( 'Assignments', 'Assignment', 'assignments', $topics_args );
 
-    	register_taxonomy( 'course-tag', 'course', $course_tag_args );
-	}
+		$enroll_args  = array( 'show_in_menu' => 'lms', 'supports' => array( 'title', 'editor', 'thumbnail', 'author' ), 'has_archive' => true );
+		$enroll       = new post_type( 'Enrolls', 'Enrolled', 'enroll', $enroll_args );
 
-	public function register_topic_post_types() {
-		$args = array(
-			'label'       => __( 'Topic', '' ),
-			'labels'       => __('Topics',''),
-			'public'       => true,
-			'show_ui'      => true,
-			'show_in_menu' => 'lms',
-			'show_in_rest' => true
-		);
-
-		register_post_type( 'topics', $args );
-	}
-
-	public function register_assignments_post_types() {
-		$args = array(
-			'label'       => __( 'Assignment', '' ),
-			'labels'       => __('Assignments',''),
-			'public'       => true,
-			'show_ui'      => true,
-			'show_in_menu' => 'lms',
-			'show_in_rest' => true
-		);
-
-		register_post_type( 'assignments', $args );
-	}
-
-	public function register_enrolled_post_types() {
-
-		$args = array(
-			'label'       => __( 'Enrolled', '' ),
-			'labels'       => __('Enrolls',''),
-			'public'       => true,
-			'show_ui'      => true,
-			'show_in_menu' => 'lms',
-			'show_in_rest' => true
-		);
-
-		register_post_type( 'enroll', $args );
-
-	}
-
-	public function register_course_box() {
-
-	}
-
-	public function save_course_meta( $post_id, $post ) {
-
+		$quiz_args  = array( 'show_in_menu' => 'lms', 'supports' => array( 'title', 'editor', 'thumbnail', 'author' ), 'has_archive' => true );
+		$quiz       = new post_type( 'Quizzes', 'Quiz', 'quiz', $quiz_args );
+		
+		$lesson_args  = array( 'show_in_menu' => 'lms', 'supports' => array( 'title', 'editor', 'thumbnail', 'author' ), 'has_archive' => true );
+		$lesson       = new post_type( 'Lessons', 'lesson', 'lesson', $lesson_args );
 	}
 }
